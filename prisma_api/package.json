@@ -1,0 +1,50 @@
+{
+   "name": "hornero",
+   "version": "0.3.0",
+   "description": "Horneo API.",
+   "devDependencies": {
+      "@types/cron": "^1.7.2",
+      "@types/express": "^4.17.7",
+      "@types/jsonwebtoken": "^8.5.0",
+      "@types/lodash": "^4.14.150",
+      "@types/lru-cache": "^5.1.0",
+      "@types/multer": "^1.4.3",
+      "@types/node": "^8.10.59",
+      "@types/socket.io": "^2.1.4",
+      "create-ts-index": "^1.13.6",
+      "ts-node": "3.3.0",
+      "tsc-watch": "^4.2.3",
+      "typedoc": "^0.21.4",
+      "typedoc-gitlab-wiki-theme": "^0.1.2",
+      "typescript": "^4.9.4"
+   },
+   "dependencies": {
+      "@prisma/client": "^4.7.1",
+      "@types/bcryptjs": "^2.4.2",
+      "@types/nodemailer": "^6.4.0",
+      "bcrypt": "^4.0.1",
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "cron": "^1.8.2",
+      "dotenv": "^10.0.0",
+      "express": "^4.17.1",
+      "jsonwebtoken": "^8.5.1",
+      "lodash": "^4.17.21",
+      "lru-cache": "^6.0.0",
+      "multer": "^1.4.2",
+      "mysql": "^2.18.1",
+      "nodemailer": "^6.6.3",
+      "prisma": "^4.7.1",
+      "reflect-metadata": "^0.1.10",
+      "socket.io": "^2.4.1",
+      "source-map-support": "^0.5.19",
+      "typedoc-plugin-pdf-export": "0.0.3",
+      "typeorm": "^0.2.37"
+   },
+   "scripts": {
+      "start": "node build/index.js",
+      "dev": "tsc-watch --onSuccess \"node build/index.js\"",
+      "dep": "ts-node index.ts",
+      "build": "tsc"
+   }
+}
