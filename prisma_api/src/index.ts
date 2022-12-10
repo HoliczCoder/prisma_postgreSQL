@@ -3,8 +3,8 @@ const prisma = new PrismaClient();
 import "reflect-metadata";
 let cors = require("cors");
 import bodyParser = require("body-parser");
-import router from "./routers/routes.index";
-import Server from "./routers/server/Server";
+import routes from "./routers/routes.index";
+import Server from "./server/Server";
 // import { ejecutarCron } from './functions/cronJobs'
 // import { mainHandler } from "./socketController/mainHandler";
 import 'source-map-support/register';
@@ -13,6 +13,10 @@ async function main() {
     require('dotenv').config();
     const server = Server.init(Number(process.env.PORT))
     server.app.use(cors())
+    server.app.use('/api', routes);
+    server.start(() => {
+        console.log(`servidor corriendo en el puerto http://localhost:${process.env.PORT}/api`);
+    });
 
 }
 

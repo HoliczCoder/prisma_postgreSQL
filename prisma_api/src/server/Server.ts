@@ -8,7 +8,7 @@ export default class Server {
     public app: any;
     public port: number;
     public server: any;
-    public socketIo: io.Server
+    public socketIo: io.Server;
 
     constructor(port: number) {
         this.app = express();
@@ -19,7 +19,7 @@ export default class Server {
     static init(port: number) {
         return new Server(port)
     }
-    start(callback: () => void) {
+    start(callback: (message: string) => void) {
         this.server.listen(this.port, callback);
     }
 
