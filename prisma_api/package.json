@@ -44,7 +44,7 @@
    "scripts": {
       "start": "node build/index.js",
       "dev": "tsc-watch --onSuccess \"node build/index.js\"",
-      "dep": "ts-node index.ts",
+      "dep": "ts-node src/index.ts",
       "build": "tsc"
    }
 }
