@@ -1,7 +1,8 @@
 import { Router } from "express";
-import { createUser } from "../controllers/user.controllers";
+import { createUser, emailResigter } from "../controllers/user.controllers";
 
 const router = Router();
+router.post("/email-resgister", emailResigter)
 router.post("/", createUser)
 
 
