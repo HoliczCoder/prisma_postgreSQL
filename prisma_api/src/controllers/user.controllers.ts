@@ -2,9 +2,19 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import { hashSync, genSaltSync } from "bcrypt";
 const prisma = new PrismaClient();
 import e, { Request, Response } from "express";
+type User = {
+    id: number
+    email: string,
+    name: string,
+    password: string,
+}
 export const createUser = async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
+    const existRes: any = await emailResigter(req, res);
+    console.log(existRes);
+    if (existRes) {
+      return;
+    }
     if (req.body.password) {
       const salt = genSaltSync(Number(process.env.SALT_HASH));
       const hash_password: string = hashSync(req.body.password, salt);
@@ -18,7 +28,6 @@ export const createUser = async (req: Request, res: Response) => {
       res.status(200).json(reps);
     }
     res.status(200).send("cannot encrypt password");
-
   } catch (error) {
     res.status(500).json({ error });
   }
@@ -32,4 +41,5 @@ export const emailResigter = async (req: Request, res: Response) => {
   } else {
     res.json({ isInUse: true });
   }
+  return result;
 };
