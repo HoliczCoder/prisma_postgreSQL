@@ -1,0 +1,1 @@
+INSERT INTO 'Rol' VALUES (1,'Administator'),(2,'Player'),(3,'Teacher');
