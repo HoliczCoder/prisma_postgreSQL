@@ -1,0 +1,25 @@
+cambioclave  key change
+codigousuario usercode
+complejidad complexity
+Baja Low
+Media Medium
+Alta High
+ESTADO RESOLUCION RESOLUTION STATUS
+ESTADO_TORNEO TOURNAMENT_STATE
+Etiqueta Hashtag
+lenguaje language
+migrations migrations
+problemaRelacion problemrelationship
+problemaRelacion problem label
+Resolucion Resolution
+Solucion Solution
+Stub Stub
+tipotorneo typetournament
+Torneos tournaments
+nombre name
+cuenta bill
+equipo equipment
+estadoresolucion stateroomsolution
+parametrosEntranda inputparameters
+tiempoEjecucionMax MaxExecutionTime
+salida exit
