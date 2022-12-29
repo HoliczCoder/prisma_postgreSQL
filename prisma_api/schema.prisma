@@ -32,4 +32,17 @@ model User {
   password String
   posts    Post[]
   profile  Profile?
+  roleId   Int? 
+  role     Rol?  @relation(fields: [roleId], references: [idRol])
+}
+
+model CambioClave {
+  idCambio Int @id @default(autoincrement())
+  status Int
+}
+
+model Rol {
+  idRol Int @id @default(autoincrement())
+  rol String 
+  user User[]
 }
