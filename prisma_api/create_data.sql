@@ -28,6 +28,12 @@ INSERT INTO "user_db"."Rol" VALUES (1,'Administator'),(2,'Player'),(3,'Teacher')
 
 INSERT INTO "user_db"."Language" VALUES (1,'PHP'),(2,'Python'), (3,'Javascript'), (4,'Javas'), (5,'C#'), (6, 'Visual Basic'), (7, 'Bash'), (8, 'Lisp'), (9, 'Ciao Prolog'), (10, 'Perl'), (11, 'Ruby'), (12, 'C/C++'), (13, 'Pascal'), (14,'PSelnt'), (15, 'Blockly'), (16, 'ADA');
 
+INSERT INTO "user_db"."TypeTournament" VALUES (1,'Open'),(2,'Closed'),(3,'Open without time limit'),(4,'Baking');
+
+INSERT INTO "user_db"."StateTournament" VALUES (1,'Before start'),(2,'In process'),(3,'Finished');
+
+
+
 
 
 -- SELECT * FROM "user_db"."Post";
