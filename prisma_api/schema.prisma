@@ -26,16 +26,16 @@ model Profile {
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  name     String
-  password String
-  posts    Post[]
-  profile  Profile?
-  roleId   Int
-  role     Rol     @relation(fields: [roleId], references: [idRol])
+  id         Int      @id @default(autoincrement())
+  email      String   @unique
+  name       String
+  password   String
+  posts      Post[]
+  profile    Profile?
+  roleId     Int
+  role       Rol      @relation(fields: [roleId], references: [idRol])
   languageid Int
-  language Language @relation(fields: [languageid], references: [idLanguage]) 
+  language   Language @relation(fields: [languageid], references: [idLanguage])
 }
 
 model CambioClave {
@@ -52,5 +52,34 @@ model Rol {
 model Language {
   idLanguage Int    @id @default(autoincrement())
   language   String
-  user User[]
+  user       User[]
 }
+
+model Tournament {
+  idTournament      Int             @id @default(autoincrement())
+  name              String
+  description       String
+  startDate         DateTime
+  endDate           DateTime
+  stateTournamentId Int
+  stateTournament   StateTournament @relation(fields: [stateTournamentId], references: [idState])
+  typeTournamentId  Int
+  typeTournament    TypeTournament  @relation(fields: [typeTournamentId], references: [idType])
+}
+
+model StateTournament {
+  idState    Int          @id @default(autoincrement())
+  State      String
+  tournament Tournament[]
+}
+
+model TypeTournament {
+  idType     Int          @id @default(autoincrement())
+  Type       String
+  tournament Tournament[]
+}
+
+// model Creator {
+//   id Int @id @default(autoincrement())
+  
+// }

@@ -23,3 +23,8 @@ estadoresolucion stateroomsolution
 parametrosEntranda inputparameters
 tiempoEjecucionMax MaxExecutionTime
 salida exit
+parcial partial
+partial weather
+etiqueta Hashtag
+estadotorneo statetournament
+estado
