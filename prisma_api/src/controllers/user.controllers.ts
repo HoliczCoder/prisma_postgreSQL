@@ -3,16 +3,20 @@ import { hashSync, genSaltSync } from "bcrypt";
 const prisma = new PrismaClient();
 import e, { Request, Response } from "express";
 type User = {
-    id: number
-    email: string,
-    name: string,
-    password: string,
-}
+  id: number;
+  email: string;
+  name: string;
+  password: string;
+};
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const existRes: any = await emailResigter(req, res);
-    console.log(existRes);
-    if (existRes) {
+    const result = await prisma.user.findFirst({
+      where: { email: req.body.email },
+    });
+    // const existRes: any = await emailResigter(req, res);
+    // console.log(existRes);
+    if (result) {
+      res.json({ isInUse: "account had already exist" });
       return;
     }
     if (req.body.password) {
@@ -23,13 +27,17 @@ export const createUser = async (req: Request, res: Response) => {
           email: req.body.email,
           name: req.body.name,
           password: hash_password,
+          roleId: req.body.roleId,
+          languageid: req.body.languageid,
         },
       });
       res.status(200).json(reps);
+      return;
     }
-    res.status(200).send("cannot encrypt password");
+    res.status(200).send({ res: "cannot encrypt password" });
+    return;
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(404).json({ error });
   }
 };
 
