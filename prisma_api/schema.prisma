@@ -28,21 +28,29 @@ model Profile {
 model User {
   id       Int      @id @default(autoincrement())
   email    String   @unique
-  name     String?
+  name     String
   password String
   posts    Post[]
   profile  Profile?
-  roleId   Int? 
-  role     Rol?  @relation(fields: [roleId], references: [idRol])
+  roleId   Int
+  role     Rol     @relation(fields: [roleId], references: [idRol])
+  languageid Int
+  language Language @relation(fields: [languageid], references: [idLanguage]) 
 }
 
 model CambioClave {
   idCambio Int @id @default(autoincrement())
-  status Int
+  status   Int
 }
 
 model Rol {
-  idRol Int @id @default(autoincrement())
-  rol String 
+  idRol Int    @id @default(autoincrement())
+  rol   String
+  user  User[]
+}
+
+model Language {
+  idLanguage Int    @id @default(autoincrement())
+  language   String
   user User[]
 }
