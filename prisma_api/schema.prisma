@@ -79,7 +79,23 @@ model TypeTournament {
   tournament Tournament[]
 }
 
+model Problem {
+  idProblem        Int        @id @default(autoincrement())
+  name             String
+  archive          String
+  statement        String
+  complexityId     Int
+  complexity       Complexity @relation(fields: [complexityId], references: [idComplexity])
+  maxExecutionTime Float
+}
+
+model Complexity {
+  idComplexity Int       @id @default(autoincrement())
+  complexity   String
+  problem      Problem[]
+}
+
 // model Creator {
 //   id Int @id @default(autoincrement())
-  
+
 // }
