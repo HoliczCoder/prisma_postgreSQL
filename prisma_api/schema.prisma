@@ -56,15 +56,16 @@ model Language {
 }
 
 model Tournament {
-  idTournament      Int             @id @default(autoincrement())
+  idTournament      Int                 @id @default(autoincrement())
   name              String
   description       String
   startDate         DateTime
   endDate           DateTime
   stateTournamentId Int
-  stateTournament   StateTournament @relation(fields: [stateTournamentId], references: [idState])
+  stateTournament   StateTournament     @relation(fields: [stateTournamentId], references: [idState])
   typeTournamentId  Int
-  typeTournament    TypeTournament  @relation(fields: [typeTournamentId], references: [idType])
+  typeTournament    TypeTournament      @relation(fields: [typeTournamentId], references: [idType])
+  tournamentProblem TournamentProblem[]
 }
 
 model StateTournament {
@@ -80,19 +81,29 @@ model TypeTournament {
 }
 
 model Problem {
-  idProblem        Int        @id @default(autoincrement())
-  name             String
-  archive          String
-  statement        String
-  complexityId     Int
-  complexity       Complexity @relation(fields: [complexityId], references: [idComplexity])
-  maxExecutionTime Float
+  idProblem         Int                 @id @default(autoincrement())
+  name              String
+  archive           String?
+  statement         String
+  complexityId      Int
+  complexity        Complexity          @relation(fields: [complexityId], references: [idComplexity])
+  maxExecutionTime  Float
+  tournamentProblem TournamentProblem[]
 }
 
 model Complexity {
   idComplexity Int       @id @default(autoincrement())
   complexity   String
   problem      Problem[]
+}
+
+model TournamentProblem {
+  idTournamentProblem    Int        @id @default(autoincrement())
+  tournament             Tournament @relation(fields: [tournamentIdTournament], references: [idTournament])
+  tournamentIdTournament Int
+  problem                Problem    @relation(fields: [problemIdProblem], references: [idProblem])
+  problemIdProblem       Int
+  order                  Int
 }
 
 // model Creator {
