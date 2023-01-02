@@ -66,6 +66,7 @@ model Tournament {
   typeTournamentId  Int
   typeTournament    TypeTournament      @relation(fields: [typeTournamentId], references: [idType])
   tournamentProblem TournamentProblem[]
+  tournamentUser    TournamentUser[]
 }
 
 model StateTournament {
@@ -89,6 +90,7 @@ model Problem {
   complexity        Complexity          @relation(fields: [complexityId], references: [idComplexity])
   maxExecutionTime  Float
   tournamentProblem TournamentProblem[]
+  tournamentUser    TournamentUser[]
 }
 
 model Complexity {
@@ -109,6 +111,18 @@ model TournamentProblem {
 model StateSolution {
   idState Int    @id @default(autoincrement())
   State   String
+}
+
+model TournamentUser {
+  idTournamentUser       Int        @id @default(autoincrement())
+  tournament             Tournament @relation(fields: [tournamentIdTournament], references: [idTournament])
+  tournamentIdTournament Int
+  problem                Problem    @relation(fields: [problemIdProblem], references: [idProblem])
+  problemIdProblem       Int
+  // order Int
+  point                  Int        @default(0)
+  time                   BigInt     @default(0)
+  token                  String
 }
 
 // model Creator {
