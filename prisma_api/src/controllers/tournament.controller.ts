@@ -5,8 +5,10 @@ const prisma = new PrismaClient();
 
 export const createTournament = async (req: Request, res: Response) => {
     try {
-        let user =
-        // const result = await prisma.tournament.create()
+        const result = await prisma.tournament.create(req.body)
+        console.log(result);
+        
+        
 
     } catch (error) {
 
