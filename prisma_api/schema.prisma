@@ -122,12 +122,13 @@ model Complexity {
 }
 
 model TournamentProblem {
-  idTournamentProblem    Int        @id @default(autoincrement())
-  tournament             Tournament @relation(fields: [tournamentIdTournament], references: [idTournament])
+  idTournamentProblem    Int              @id @default(autoincrement())
+  tournament             Tournament       @relation(fields: [tournamentIdTournament], references: [idTournament])
   tournamentIdTournament Int
-  problem                Problem    @relation(fields: [problemIdProblem], references: [idProblem])
+  problem                Problem          @relation(fields: [problemIdProblem], references: [idProblem])
   problemIdProblem       Int
   order                  Int
+  problemHashtab         ProblemHashtag[]
 }
 
 model StateSolution {
@@ -156,25 +157,25 @@ model Label {
 }
 
 model Resolution {
-  idResolution           Int         @id @default(autoincrement())
-  user                   User?       @relation(fields: [userId], references: [id])
+  idResolution           Int            @id @default(autoincrement())
+  user                   User?          @relation(fields: [userId], references: [id])
   userId                 Int?
   //Many to one
-  problem                Problem?    @relation(fields: [problemIdProblem], references: [idProblem])
+  problem                Problem?       @relation(fields: [problemIdProblem], references: [idProblem])
   problemIdProblem       Int?
   //Many to one
-  solution               Solution?   @relation(fields: [solutionIdSolution], references: [idSolution])
+  solution               Solution?      @relation(fields: [solutionIdSolution], references: [idSolution])
   solutionIdSolution     Int?
   //Many to one
-  tournament             Tournament? @relation(fields: [tournamentIdTournament], references: [idTournament])
+  tournament             Tournament?    @relation(fields: [tournamentIdTournament], references: [idTournament])
   tournamentIdTournament Int?
-  token                  String      @unique
+  token                  String         @unique
   applicationDate        String
   responseDate           String?
   reply                  String?
   //Many to one
-  stateSolution        StateSolution? @relation(fields: [stateSolutionIdState], references: [idState])
-  stateSolutionIdState Int?
+  stateSolution          StateSolution? @relation(fields: [stateSolutionIdState], references: [idState])
+  stateSolutionIdState   Int?
 }
 
 model Solution {
@@ -187,5 +188,15 @@ model Solution {
   resolution       Resolution[]
 }
 
-// model Hashtag {
+model Hashtag {
+  idHashtag      Int              @id @default(autoincrement())
+  problemHashtab ProblemHashtag[]
+}
 
+model ProblemHashtag {
+  idProblemHashtab Int @id @default(autoincrement())
+  hashtag                              Hashtag?           @relation(fields: [hashtagIdHashtag], references: [idHashtag])
+  hashtagIdHashtag                     Int?
+  tournamentProblem                    TournamentProblem? @relation(fields: [tournamentProblemIdTournamentProblem], references: [idTournamentProblem])
+  tournamentProblemIdTournamentProblem Int?
+}
