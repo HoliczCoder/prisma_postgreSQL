@@ -190,11 +190,12 @@ model Solution {
 
 model Hashtag {
   idHashtag      Int              @id @default(autoincrement())
+  hashtag        String
   problemHashtab ProblemHashtag[]
 }
 
 model ProblemHashtag {
-  idProblemHashtab Int @id @default(autoincrement())
+  idProblemHashtab                     Int                @id @default(autoincrement())
   hashtag                              Hashtag?           @relation(fields: [hashtagIdHashtag], references: [idHashtag])
   hashtagIdHashtag                     Int?
   tournamentProblem                    TournamentProblem? @relation(fields: [tournamentProblemIdTournamentProblem], references: [idTournamentProblem])
