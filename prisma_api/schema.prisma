@@ -26,16 +26,17 @@ model Profile {
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
+  id         Int          @id @default(autoincrement())
+  email      String       @unique
   name       String
   password   String
   posts      Post[]
   profile    Profile?
   roleId     Int
-  role       Rol      @relation(fields: [roleId], references: [idRol])
+  role       Rol          @relation(fields: [roleId], references: [idRol])
   languageid Int
-  language   Language @relation(fields: [languageid], references: [idLanguage])
+  language   Language     @relation(fields: [languageid], references: [idLanguage])
+  tournament Tournament[]
 }
 
 model CambioClave {
@@ -67,6 +68,8 @@ model Tournament {
   typeTournament    TypeTournament      @relation(fields: [typeTournamentId], references: [idType])
   tournamentProblem TournamentProblem[]
   tournamentUser    TournamentUser[]
+  user              User?               @relation(fields: [userId], references: [id])
+  userId            Int?
 }
 
 model StateTournament {
