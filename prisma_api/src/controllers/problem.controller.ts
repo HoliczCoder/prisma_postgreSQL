@@ -23,6 +23,14 @@ export const createProblem = async (req: Request, res: Response) => {
                         },
                     ],
                 },
+                solution: {
+                    create: [
+                        {
+                            inputParameter: req.body.inputParameter,
+                            exit: req.body.exit,
+                        }
+                    ]
+                }
             },
         })
     } catch (e) {

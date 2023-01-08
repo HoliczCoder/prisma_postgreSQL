@@ -40,14 +40,32 @@ exports.createProblem = void 0;
 var client_1 = require("@prisma/client");
 var prisma = new client_1.PrismaClient();
 var createProblem = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var e_1;
+    var createProblem_1, e_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, ];
+                return [4 /*yield*/, prisma.problem.create({
+                        data: {
+                            name: req.body.name,
+                            statement: req.body.statement,
+                            complexityId: req.body.complexityId,
+                            maxExecutionTime: req.body.maxExecutionTime,
+                            problemHashtab: {
+                                create: [
+                                    {
+                                        hashtag: {
+                                            create: {
+                                                hashtag: req.body.hashtag
+                                            }
+                                        }
+                                    },
+                                ]
+                            }
+                        }
+                    })];
             case 1:
-                _a.sent();
+                createProblem_1 = _a.sent();
                 return [3 /*break*/, 3];
             case 2:
                 e_1 = _a.sent();
