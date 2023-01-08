@@ -17,6 +17,9 @@ async function main() {
   //     res.send("hell world")
   //   } );
   server.app.use(bodyParser.json())
+  // server.app.get('/', (req: any, res: any) => {
+  //   res.send('hello world')
+  // })
   server.app.use("/api", routes);
   server.start(() => {
     console.log(

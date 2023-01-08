@@ -5,6 +5,8 @@ import { Prisma, PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const createProblem = async (req: Request, res: Response) => {
+    console.log("hello world");
+
     try {
         const createProblem = await prisma.problem.create({
             data: {
@@ -35,5 +37,13 @@ export const createProblem = async (req: Request, res: Response) => {
         })
     } catch (e) {
         console.log(e);
+        res.status(500).json({ e, msg: "Error" });
+
     }
+}
+
+export const getProblem = async (req: Request, res: Response) => {
+    res.json({
+        "hello": "this is response"
+    })
 }
